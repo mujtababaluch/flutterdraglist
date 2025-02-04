@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import '../models/fake_order_model.dart';
 import '../models/order_model.dart';
 import '../services/order_repository.dart';
 import '../services/order_service.dart';
@@ -7,7 +8,7 @@ import '../services/secure_storage_service.dart';
 
 class OrderController extends GetxController {
   var orders = <Order>[].obs;
-   var myorders = <Order>[].obs;
+   var myorders = <FakeOrder>[].obs;
   final OrderService _orderService = OrderService();
   final SecureStorageService _storageService = SecureStorageService();
     final OrderRepository _repository = OrderRepository();

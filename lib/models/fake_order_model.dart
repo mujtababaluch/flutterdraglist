@@ -1,14 +1,13 @@
-class Order {
+class FakeOrder {
   final int id;
   final String pickupLocation;
   final String dropoffLocation;
-  
-  Order({required this.id, required this.pickupLocation, required this.dropoffLocation});
+  FakeOrder ({required this.id, required this.pickupLocation, required this.dropoffLocation});
 
-  factory Order.fromJson(Map<String, dynamic> json) {
-    return Order(
+  factory FakeOrder .fromJson(Map<String, dynamic> json) {
+    return FakeOrder (
       id: json['id'],
-      pickupLocation: json['pickup'],
+      pickupLocation: json['title'],
       dropoffLocation: json['dropoff'],
     );
   }

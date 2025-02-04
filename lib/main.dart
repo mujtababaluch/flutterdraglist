@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'views/my_new_orders.dart';
 import 'views/order_list_screen.dart';
 
 void main() {
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: OrderListScreen()
+      //home: OrderListScreen()
+      home: MyOrders()
     );
   }
 }
