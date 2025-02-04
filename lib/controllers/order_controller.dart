@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import '../models/order_model.dart';
+import '../services/order_repository.dart';
 import '../services/order_service.dart';
 import '../services/secure_storage_service.dart';
 
 class OrderController extends GetxController {
   var orders = <Order>[].obs;
+   var myorders = <Order>[].obs;
   final OrderService _orderService = OrderService();
   final SecureStorageService _storageService = SecureStorageService();
+    final OrderRepository _repository = OrderRepository();
+
   
   RxString remainingTime = "".obs; // Global countdown for all orders
   Timer? _timer;
@@ -15,7 +19,8 @@ class OrderController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadOrders();
+    ///loadOrders();
+      fetchOrders();
     _startTimer();
   }
 
@@ -68,6 +73,15 @@ class OrderController extends GetxController {
     _storageService.saveOrderSequence(updatedOrders);
   }
 
+
+  void fetchOrders() async {
+    try {
+      var fetchedOrders = await _repository.fetchOrders();
+      myorders.assignAll(fetchedOrders);
+    } catch (e) {
+      print("Error fetching orders: $e");
+    }
+  }
   @override
   void onClose() {
     _timer?.cancel();
